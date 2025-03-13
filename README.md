@@ -7,7 +7,7 @@ This repository contains sample code demonstrating how to extract tag structures
 This code requires the InGear Logix Driver, which is a commercial product not included in this repository. Users will need to purchase their own license to use this code.
 
 ## Code Sample
-This repository contains a single Program.cs file that demonstrates:
+This repository contains a C# program that demonstrates:
 - Connecting to an Allen-Bradley PLC using the InGear Logix Driver
 - Extracting tag names and data types from all programs
 - Processing User-Defined Types (UDTs) and their members
