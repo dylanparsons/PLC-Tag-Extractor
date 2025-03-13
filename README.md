@@ -1,90 +1,36 @@
-## Overview
+# PLC Tag Extractor
 
-This tool helps industrial automation engineers document PLC configurations by extracting tag names, data types, and structures from Allen-Bradley ControlLogix/CompactLogix PLCs. It traverses program structures and handles User-Defined Types (UDTs) with nested members.
+## Overview
+This repository contains sample code demonstrating how to extract tag structures from Allen-Bradley ControlLogix/CompactLogix PLCs using the InGear Logix Driver. The code traverses program structures and handles User-Defined Types (UDTs) with nested members, exporting them to XML.
 
 ## ⚠️ Important Disclaimer
+This code requires the InGear Logix Driver, which is a commercial product not included in this repository. Users will need to purchase their own license to use this code.
 
-This project demonstrates how to use the InGear Logix Driver to connect to Allen-Bradley PLCs. **The InGear Logix Driver is a commercial product and is not included in this repository**. Users will need to purchase their own license for the InGear Logix Driver to use this application.
+## Code Sample
+This repository contains a single Program.cs file that demonstrates:
+- Connecting to an Allen-Bradley PLC using the InGear Logix Driver
+- Extracting tag names and data types from all programs
+- Processing User-Defined Types (UDTs) and their members
+- Exporting the tag structure to an XML file
 
-This repository contains only original code and does not distribute any licensed components. The code is shared for educational and demonstration purposes only.
+## Using This Code
+To use this code in your own project:
 
-## Prerequisites
-
-- Microsoft .NET Framework 4.5 or higher
-- Visual Studio 2017 or higher
-- InGear Logix Driver (commercial product available from [Ingear.app](https://ingear.app/))
-- Network access to an Allen-Bradley PLC
-
-## Setup Instructions
-
-1. Clone this repository
-2. Open the solution file in Visual Studio
-3. Add a reference to the InGear Logix Driver DLL (you'll need to obtain this separately)
-   - Right-click on "References" in the Solution Explorer
-   - Select "Add Reference"
-   - Browse to the location of your InGear Logix DLL
-   - Select and add the reference
-4. Build the solution
-
-## Usage
-
-1. Modify the IP address in the source code to point to your PLC:
-   ```csharp
-   MyPLC.IPAddress = "10.10.205.43"; // Change to your PLC's IP address
-   ```
-
-2. Run the application from Visual Studio or using the compiled executable
-3. The application will connect to the PLC, extract all tags, and save them to an XML file named "PLC_Tags.xml" in the same directory as the executable
-
-## Features
-
-- Connects to Allen-Bradley PLCs over Ethernet/IP
-- Extracts all program tags, including UDTs and their members
-- Organizes tags by program
-- Exports the complete tag structure to XML for documentation
-- Error handling for connection and tag upload issues
+1. Create a new C# Console Application in Visual Studio
+2. Add a reference to the InGear Logix Driver (commercial product)
+3. Replace your Program.cs with the one provided here
+4. Modify the IP address to point to your PLC
+5. Build and run the application
 
 ## Example Output
-
 The application generates an XML file with a structure similar to this:
-
 ```xml
 <PLC IPAddress="10.10.205.43">
   <Program Name="MainProgram">
     <Tag Name="Counter" DataType="DINT" />
-    <Tag Name="StartPB" DataType="BOOL" />
     <Tag Name="MachineStatus" DataType="UDT_Status">
       <Member Name="Running" DataType="BOOL" />
-      <Member Name="Faulted" DataType="BOOL" />
       <Member Name="ProductCount" DataType="DINT" />
     </Tag>
   </Program>
 </PLC>
-```
-
-See the included `example-output.xml` file for a more comprehensive example.
-
-## Limitations
-
-- Currently only supports Allen-Bradley ControlLogix/CompactLogix PLCs
-- Does not extract tag values, only tag structures
-- Requires direct network access to the PLC
-
-## Future Enhancements
-
-- Add support for reading tag values in real-time
-- Implement comparison functionality to identify changes between tag snapshots
-- Create a GUI interface for easier configuration and visualization
-- Add filtering options for specific tag types or programs
-- Support additional PLC platforms beyond Allen-Bradley
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Author
-
-Dylan Parsons - Software Engineer specializing in industrial automation and quality control systems.
-
----
-**Note**: This project is not affiliated with or endorsed by Allen-Bradley, Rockwell Automation, or InGear.
